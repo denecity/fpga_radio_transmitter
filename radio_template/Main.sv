@@ -203,20 +203,20 @@ module Main(
    //
 
    FullSinePackage sinePackage(
-    .clk_i(tick_reduced),      // use the universal reduced 100 kHz clock
+    .clk_i(tick_reduced),      // use the universal reduced 100 kHz clock --> you have to assign that....
     .reset_i(reset),
     .tick_i(pilot_signal),   // or tick_reduced_R, they should be the same
     .sine_o(stereo_modulation_signal) // 16-bit signed sine wave at 38 kHz
    );
 
    StereoEncoder stereoEncoder(
-    .clk_i(tick_reduced),
+    .clk_i(tick_reduced),  // tick_reduced is illdefined at the moment
     .reset_i(reset),
-    .l_i(audio_L),
-    .r_i(audio_R),
+    .l_i(audio_L), // these lines "audio_L/R" do not exist. grab the according above defined lines which are already wired to the output of the corresponding modules.
+    .r_i(audio_R), // e.g. "signal_fir_filtered_R/L" ...
     .pilot_i(pilot_signal),
     .subcarrier_i(stereo_modulation_signal),
-    .mpx_o(stereo_signal) // TODO: we need better naming conventions
+    .mpx_o(stereo_signal) // TODO: we need better naming conventions <-- what is the stereo_signal? the fully added signal ready to be feeded into the DDS? if so, please put it on the corresponding above defined line.
    );
 
    
