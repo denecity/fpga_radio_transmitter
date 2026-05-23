@@ -24,7 +24,7 @@ module DDS #(
     always_ff @(posedge clk_i) begin
         if (reset_i == 1)
             added_value <= 0;
-        else if (tick_i == 1) begin
+        else if (tick_i == 1) begin // is this right? not sure.... maybe we have to do this always as long as there is no change in the input signal....
             added_value <= next_added_value;
         end
     end

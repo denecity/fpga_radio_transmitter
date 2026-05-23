@@ -46,7 +46,7 @@ module Main(
    logic signed[15:0] signal_LmR_onSideband;
    
    logic signed[15:0] signal_added_forDDSinput;// signals to the DDS
-   logic signed[20:0] signal_DDSout; // output of the DDS --> TODO: adjust the bit size of the singal such that you achieve the whished frequency of the DDS
+   logic signed[15:0] signal_DDSout; // output of the DDS --> TODO: adjust the bit size of the singal such that you achieve the whished frequency of the DDS
    logic signal_out; // single digital square wave line out, with the DDS frequency modulated according to the audio input.
    
 
@@ -221,7 +221,17 @@ module Main(
 
    
 
-   // TODO: implement the DDS, threshold -> sqare wave generator
+   DDS #(
+      .N_bits(16), //TODO:  We have to choose the DDS overflow number 
+      .threshold( 32768)// 2^16 / 2 --> TODO: we have to change it to match our DDS that we want to generate with the given frequency
+   ) DDSGen(
+      .clk_i(clk),
+      .reset_i(reset),
+      .tick_i(tick_reduced_R), // have to solve the tick_reduced "problem"
+      .signal_i(signal_added_forDDSinput), // input wire that is connected to your output (you have to assign it accordingly)
+      .signal_o(signal_DDSout),
+      .square_o(signal_out)
+   )
 
 
    // TODO: we might want to change the naming of on the FPGA Display
@@ -244,5 +254,6 @@ module Main(
    assign ARDUINO_IO[5] = adc_clk;
    assign ARDUINO_IO[6] = adc_mosi;
    assign adc_miso = ARDUINO_IO[7]; // note that the order matters!
+   assign ARDUINO_IO[9] = signal_out; // we feed the square output to the Arduino digital output 9. TODO: We have to check wether this is actually free to use
 
 endmodule
