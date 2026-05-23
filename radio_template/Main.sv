@@ -234,26 +234,26 @@ module Main(
    )
 
 
-   // TODO: we might want to change the naming of on the FPGA Display
+   // TODO: we might want to change the naming of on the FPGA Display to write RADIO
    always_comb begin
-        HEX0 = ~8'd120; // T
-        HEX1 = ~8'd113; // F
-        HEX2 = ~8'd4; // I
-        HEX3 = ~8'd116; // H
-        HEX4 = ~8'd109; // S
+        HEX0 = 
+        HEX1 = 
+        HEX2 = 
+        HEX3 = ~8'd4; // I
+        HEX4 = 
    end
    
-   // TODO: update this to 2 adc's and a single line for our square wave output.
    // Wire the ADC to the FPGA via Arduino pins
-   assign ARDUINO_IO[0] = dac_cs;
-   assign ARDUINO_IO[1] = dac_clk;
-   assign ARDUINO_IO[2] = dac_mosi;
-   assign ARDUINO_IO[3] = dac_reset_n;
+   // TODO: We have to wire the second adc (R signal) to the correct arduino_io pins
+   assign ARDUINO_IO[0] = adc_cnv_R;
+   assign ARDUINO_IO[1] = adc_clk_R;
+   assign ARDUINO_IO[2] = adc_mosi_R;
+   assign adc_miso_R = ARDUINO_IO[3];
    
-   assign ARDUINO_IO[4] = adc_cnv;
-   assign ARDUINO_IO[5] = adc_clk;
-   assign ARDUINO_IO[6] = adc_mosi;
-   assign adc_miso = ARDUINO_IO[7]; // note that the order matters!
+   assign ARDUINO_IO[4] = adc_cnv_L;
+   assign ARDUINO_IO[5] = adc_clk_L;
+   assign ARDUINO_IO[6] = adc_mosi_L;
+   assign adc_miso_L = ARDUINO_IO[7]; // note that the order matters!
    assign ARDUINO_IO[9] = signal_out; // we feed the square output to the Arduino digital output 9. TODO: We have to check wether this is actually free to use
 
 endmodule
