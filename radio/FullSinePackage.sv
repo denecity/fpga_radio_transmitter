@@ -3,26 +3,27 @@
     Already includes a NCO (phase accumulator + tuning word) to produce the desired frequency.
 
     Doubled with sin(2 theta) = 2 * sin(theta) * cos(theta), so the CORDIC outputs feed a multiplier.
-    Both outs are in the "32768 = 1.0" convention and should be routed to the stereo encoder's pilot and subcarrier inputs, respectively.
+    Both outs are in the "16384 = 1.0" convention and should be routed to the stereo encoder's pilot and subcarrier inputs, respectively.
 */
 
 
 module FullSinePackage
     #(
-        parameter int CLOCK_FREQ = 50_000_000,
-        parameter int OUT_FREQ   = 19_000, //will also get doubled
-        parameter int N_BITS     = 32
+        parameter int SAMPLE_FREQ = 100_000,   // tick rate driving the phase accumulator
+        parameter int OUT_FREQ    = 19_000,    // will also get doubled
+        parameter int N_BITS      = 32
     )(
         input  logic                clk_i,
         input  logic                reset_i,
+        input  logic                tick_i,        // advance the phase accumulator only on tick
         output logic signed [15:0]  sin_o,         // sin(2*pi*OUT_FREQ*t)
         output logic signed [15:0]  sin_double_o   // sin(2*pi*2*OUT_FREQ*t)
     );
 
-    // round(OUT_FREQ * 2^N_BITS / CLOCK_FREQ).  For the FM default (19 kHz @ 50 MHz, 32-bit) this evaluates to 1_632_088.
+    // round(OUT_FREQ * 2^N_BITS / SAMPLE_FREQ).  SAMPLE_FREQ is the tick rate (one phase step per tick_i).
     localparam logic [N_BITS-1:0] TUNING_WORD =
-        ((longint'(OUT_FREQ) << N_BITS) + (longint'(CLOCK_FREQ) >> 1))
-        / longint'(CLOCK_FREQ);
+        ((longint'(OUT_FREQ) << N_BITS) + (longint'(SAMPLE_FREQ) >> 1))
+        / longint'(SAMPLE_FREQ);
 
     // CORDIC seed
     // The pipeline computes x_o = x_i * cos(theta) / (2K) with the
@@ -36,7 +37,7 @@ module FullSinePackage
     always_ff @(posedge clk_i) begin
         if (reset_i)
             phase <= '0;
-        else
+        else if (tick_i)
             phase <= phase + TUNING_WORD;
     end
 
@@ -68,7 +69,7 @@ module FullSinePackage
         if (reset_i) begin
             sin_o        <= '0;
             sin_double_o <= '0;
-        end else begin
+        end else if (tick_i) begin
             sin_o        <= sin_q;
             sin_double_o <= 16'(mix_prod >>> 13);
         end

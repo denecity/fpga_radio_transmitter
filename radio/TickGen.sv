@@ -18,7 +18,7 @@ module TickGen
         if (reset_i)
             counter <= 0;
         else
-            if (counter < DIVIDER)
+            if (counter < DIVIDER-1)
                 counter <= counter + 24'd1;
             else
                 counter <= 0;

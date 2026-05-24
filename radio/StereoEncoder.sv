@@ -1,21 +1,23 @@
 /*
-    Single-clock synchronous block.  Every rising edge of clk_i it
-    consumes one fresh sample of (L, R, pilot, subcarrier) and emits
-    one fresh sample of the composite signal.
+    Single-clock synchronous block.  Combinational arithmetic recomputes
+    every cycle; the output register latches a fresh composite sample on
+    each tick_i pulse.
 
     All i/o is 16-bit signed with +-1.0 => +-32768.
 
     Interface contract:
         clk_i, reset_i         : synchronous, reset is active-high
-        l_i, r_i               : valid every cycle
-        pilot_i, subcarrier_i  : valid every cycle, from the same
-                                 instance of FullSinePackage
-        mpx_o                  : valid one cycle after its inputs
+        tick_i                 : one-cycle pulse per output sample
+        l_i, r_i               : sampled when tick_i is high
+        pilot_i, subcarrier_i  : sampled when tick_i is high, from the
+                                 same instance of FullSinePackage
+        mpx_o                  : valid one cycle after the tick_i pulse
 */
 
 module StereoEncoder (
     input  logic                clk_i,
     input  logic                reset_i,
+    input  logic                tick_i,   // emit one fresh mpx sample per tick
 
     input  logic signed [15:0]  l_i,
     input  logic signed [15:0]  r_i,
@@ -65,9 +67,9 @@ module StereoEncoder (
     assign mpx_full       = 19'(lpr_with_pilot) + 19'(diff_modulated);
 
     always_ff @(posedge clk_i) begin
-        if (reset_i) mpx_o <= '0;
-        else         mpx_o <= 16'(mpx_full >>> 3); //   >>> 3 leaves enough headroom that no input combination can overflow 16-bit signed.
-                                                    // might need to be amplified on the FM modulator side
+        if (reset_i)      mpx_o <= '0;
+        else if (tick_i)  mpx_o <= 16'(mpx_full >>> 3); //   >>> 3 leaves enough headroom that no input combination can overflow 16-bit signed.
+                                                         // might need to be amplified on the FM modulator side
     end
 
 endmodule
