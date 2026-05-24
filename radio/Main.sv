@@ -168,12 +168,13 @@ module Main(
 
     // --- DDS FM modulator: mpx -> square wave on antenna pin
     DDS #(
-        .N_bits   (16),       // TODO: pick the overflow width for the carrier
-        .threshold(0) // because the int is signed
+        .N_bits   (32),
+        .CARRIER_INC(32'h1717986918), //32'd1717986918 for 20MHz, 32'd2147483648 for 25MHz, 32'd2834678415 for 33.333MHz (round(F_carrier * 2^N_bits / SAMPLE_FREQ))
+        .MOD_SHIFT(6), // extra gain on the modulation signal (tune for max deviation without overflow)
     ) ddsGen (
         .clk_i   (clk),
         .reset_i (reset),
-        .tick_i  (tick_100kHz),
+        .tick_i  (1'b1),
         .signal_i(mpx),
         .signal_o(dds_phase),
         .square_o(fm_square)
