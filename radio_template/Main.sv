@@ -81,7 +81,7 @@ module Main(
    
    
    // FIR Filter L: CIC compensation
-   // TODO: Implement the actually needed FIR filter!!!! Use the simulation programm from the exercises to extract the needed FIR coefficients
+   // TODO: Implement the actually needed FIR filter!!!! Use the simulation programm from the exercises to extract the needed FIR coefficients --> Jupyter Notebook in Exercise 7_03 to calculate FIR coefficients
    parameter num_of_stages_f1 = 40; // don't need many stages to compensate for CIC
    parameter logic signed [18-1:0] coeffs_f1[num_of_stages_f1] = '{-1470, 293, 596, -3015, 4029, -5425, 1666, 2570, -12645, 16702, -19881, 6435, 10109, -39622, 52964, -53914, 8434, 64223, -162061, 164102, 164102, -162061, 64223, 8434, -53914, 52964, -39622, 10109, 6435, -19881, 16702, -12645, 2570, 1666, -5425, 4029, -3015, 596, 293, -1470};
    
