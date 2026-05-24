@@ -1,0 +1,5 @@
+- Generate FIR coeffs
+- Define LED pins
+- specifiy makefile from template
+- change to 106 kHz (dont think that needs a variable name change)
+- buttons?
