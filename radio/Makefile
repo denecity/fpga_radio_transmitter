@@ -1,8 +1,8 @@
-VERILOG_SOURCES = $(PWD)/ShifterTest.sv $(PWD)/Shifter.sv $(PWD)/Cordic.sv $(PWD)/FirFSM.sv $(PWD)/TickGen.sv
+VERILOG_SOURCES = $(PWD)/AdcReader.sv $(PWD)/CIC.sv $(PWD)/Cordic.sv $(PWD)/FirFSM.sv $(PWD)/TickGen.sv $(PWD)/DDS.sv $(PWD)/FullSinePackage.sv $(PWD)/StereoEncoder.sv
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file:
-TOPLEVEL=ShifterTest
+TOPLEVEL=Main
 # MODULE is the name of the Python test file:
-MODULE=ShifterTest
+MODULE=Main
 
 
 # use the Verilator for simulation
@@ -13,7 +13,7 @@ COCOTB_HDL_TIMEPRECISION = 1ns
 EXTRA_ARGS += --trace --trace-structs
 
 
-include $(shell cocotb-config --makefiles)/Makefile.sim
+#include $(shell cocotb-config --makefiles)/Makefile.sim
 
 PROJECT = main
 

@@ -51,25 +51,21 @@ module DDS #(
     logic signed [N_bits-1:0] added_value;
     logic signed [N_bits-1:0] next_added_value;
 
-    logic square;
     assign next_added_value = (added_value + TUNING_WORD + (signal_i * SIGNAL_MULTIPLIER * SIGNAL_STRENGTH_MULTIPLIER));
 
     always_ff @(posedge clk_i) begin
-        if (reset_i == 1)
+        if (reset_i == 1) begin
             added_value <= 0;
-        else
+        end
+        else begin
             added_value <= next_added_value;
+        end
     end
     
-    if (added_value > threshold) begin
-       assign square_o = 0;
-    end
-    else begin
-        assign square_o = 1;
-    end
+    
     
     // just use the upper bits for the output (scale it to the number of bits available fot the output)
-    assign square_o = square;
+    assign square_o = (added_value > threshold) ? 1'b0 : 1'b1;
 
 endmodule
 

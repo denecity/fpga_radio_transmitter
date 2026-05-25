@@ -59,7 +59,7 @@ module Main(
 
     // --- FIR coefficients (shared L/R)
     parameter num_of_stages_fir = 80;
-    parameter logic signed [18-1:0] coeffs_fir [num_of_stages_fir] = '{-25, 2, 30, 39, 19, -25, -61, -56, 2, 80, 114, 57, -71, -177, -161, 2, 212, 299, 151, -167, -428, -390, -11, 475, 681, 361, -345, -941, -897, -80, 1035, 1599, 974, -706, -2419, -2767, -845, 3062, 7454, 10343, 10343, 7454, 3062, -845, -2767, -2419, -706, 974, 1599, 1035, -80, -897, -941, -345, 361, 681, 475, -11, -390, -428, -167, 151, 299, 212, 2, -161, -177, -71, 57, 114, 80, 2, -56, -61, -25, 19, 39, 30, 2, -25}
+    parameter logic signed [18-1:0] coeffs_fir [num_of_stages_fir] = '{-25, 2, 30, 39, 19, -25, -61, -56, 2, 80, 114, 57, -71, -177, -161, 2, 212, 299, 151, -167, -428, -390, -11, 475, 681, 361, -345, -941, -897, -80, 1035, 1599, 974, -706, -2419, -2767, -845, 3062, 7454, 10343, 10343, 7454, 3062, -845, -2767, -2419, -706, 974, 1599, 1035, -80, -897, -941, -345, 361, 681, 475, -11, -390, -428, -167, 151, 299, 212, 2, -161, -177, -71, 57, 114, 80, 2, -56, -61, -25, 19, 39, 30, 2, -25};
 
     // --- 1 MHz tick generator
     TickGen #(50) tickGen (
@@ -94,7 +94,7 @@ module Main(
     );
 
     // --- CIC decimators: 1 MHz -> 100 kHz
-    CicDecimator cic_l (
+    CicDecimator cic_l ( 
         .clk_i         (clk),
         .reset_i       (reset),
         .tick_i        (tick_1MHz),
@@ -160,11 +160,7 @@ module Main(
     );
 
     // --- DDS FM modulator: mpx -> square wave on antenna pin
-    DDS #(
-        .N_bits   (32),
-        .CARRIER_INC(32'h1717986918), //32'd1717986918 for 20MHz, 32'd2147483648 for 25MHz, 32'd2834678415 for 33.333MHz (round(F_carrier * 2^N_bits / SAMPLE_FREQ))
-        .MOD_SHIFT(6), // extra gain on the modulation signal (tune for max deviation without overflow)
-    ) ddsGen (
+    DDS ddsGen (
         .clk_i   (clk),
         .reset_i (reset),
         .signal_i(mpx),
