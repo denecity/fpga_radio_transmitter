@@ -32,10 +32,10 @@ module Main(
 
     // --- Ticks (one-cycle pulses at the named rate)
     logic tick_1MHz;        // ADC sample tick
-    logic tick_100kHz_l;    // L-lane decimated tick from CIC
-    logic tick_100kHz_r;    // R-lane decimated tick from CIC
-    logic tick_100kHz;
-    assign tick_100kHz = tick_100kHz_l; // L, R should always be in sync since they share the same ADC sample tick
+    logic tick_125kHz_l;    // L-lane decimated tick from CIC
+    logic tick_125kHz_r;    // R-lane decimated tick from CIC
+    logic tick_125kHz;
+    assign tick_125kHz = tick_125kHz_l; // L, R should always be in sync since they share the same ADC sample tick
 
     // --- Audio chain signals
     logic signed [15:0] l_adc, r_adc;   // ADC outputs (1 MHz)
@@ -58,15 +58,8 @@ module Main(
     logic adc_miso_l, adc_miso_r;       // MISO: the ADC data
 
     // --- FIR coefficients (shared L/R)
-    // TODO: replace with the actual CIC-compensation taps from the
-    // Jupyter notebook in Exercise 7_03.  Both lanes use the same filter.
-    parameter num_of_stages_fir = 40;
-    parameter logic signed [18-1:0] coeffs_fir [num_of_stages_fir] = '{
-        -1470, 293, 596, -3015, 4029, -5425, 1666, 2570, -12645, 16702,
-        -19881, 6435, 10109, -39622, 52964, -53914, 8434, 64223, -162061, 164102,
-        164102, -162061, 64223, 8434, -53914, 52964, -39622, 10109, 6435, -19881,
-        16702, -12645, 2570, 1666, -5425, 4029, -3015, 596, 293, -1470
-    };
+    parameter num_of_stages_fir = 80;
+    parameter logic signed [18-1:0] coeffs_fir [num_of_stages_fir] = '{-25, 2, 30, 39, 19, -25, -61, -56, 2, 80, 114, 57, -71, -177, -161, 2, 212, 299, 151, -167, -428, -390, -11, 475, 681, 361, -345, -941, -897, -80, 1035, 1599, 974, -706, -2419, -2767, -845, 3062, 7454, 10343, 10343, 7454, 3062, -845, -2767, -2419, -706, 974, 1599, 1035, -80, -897, -941, -345, 361, 681, 475, -11, -390, -428, -167, 151, 299, 212, 2, -161, -177, -71, 57, 114, 80, 2, -56, -61, -25, 19, 39, 30, 2, -25}
 
     // --- 1 MHz tick generator
     TickGen #(50) tickGen (
@@ -107,7 +100,7 @@ module Main(
         .tick_i        (tick_1MHz),
         .signal_i      (l_adc),
         .signal_o      (l_cic),
-        .tick_reduced_o(tick_100kHz_l)
+        .tick_reduced_o(tick_125kHz_l)
     );
 
     CicDecimator cic_r (
@@ -116,7 +109,7 @@ module Main(
         .tick_i        (tick_1MHz),
         .signal_i      (r_adc),
         .signal_o      (r_cic),
-        .tick_reduced_o(tick_100kHz_r)
+        .tick_reduced_o(tick_125kHz_r)
     );
 
     // --- FIR CIC-compensation filters
@@ -126,7 +119,7 @@ module Main(
     ) fir_l (
         .clk_i   (clk),
         .reset_i (reset),
-        .tick_i  (tick_100kHz_l),
+        .tick_i  (tick_125kHz_l),
         .signal_i(l_cic),
         .signal_o(l_fir)
     );
@@ -137,7 +130,7 @@ module Main(
     ) fir_r (
         .clk_i   (clk),
         .reset_i (reset),
-        .tick_i  (tick_100kHz_r),
+        .tick_i  (tick_125kHz_r),
         .signal_i(r_cic),
         .signal_o(r_fir)
     );
@@ -149,7 +142,7 @@ module Main(
     ) sineGen (
         .clk_i       (clk),
         .reset_i     (reset),
-        .tick_i      (tick_100kHz),
+        .tick_i      (tick_125kHz),
         .sin_o       (pilot_19k),
         .sin_double_o(subcarrier_38k)
     );
@@ -158,7 +151,7 @@ module Main(
     StereoEncoder stereoEncoder (
         .clk_i       (clk),
         .reset_i     (reset),
-        .tick_i      (tick_100kHz),
+        .tick_i      (tick_125kHz),
         .l_i         (l_fir),
         .r_i         (r_fir),
         .pilot_i     (pilot_19k),
@@ -174,9 +167,7 @@ module Main(
     ) ddsGen (
         .clk_i   (clk),
         .reset_i (reset),
-        .tick_i  (1'b1),
         .signal_i(mpx),
-        .signal_o(dds_phase),
         .square_o(fm_square)
     );
 

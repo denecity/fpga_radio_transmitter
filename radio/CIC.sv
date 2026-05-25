@@ -3,7 +3,7 @@
 */
 module CicDecimator #(
     parameter num_of_stages     =  6, // the number of stages
-    parameter decimation_factor =  10, // the reduction factor of the sampling rate
+    parameter decimation_factor =  8, // the reduction factor of the sampling rate
     parameter num_bits_input    = 16,
     parameter num_bits_output   = 16
 )(
