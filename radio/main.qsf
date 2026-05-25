@@ -43,3 +43,5 @@ set_global_assignment -name TOP_LEVEL_ENTITY Main
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 22.1STD.2
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:34:38  MAY 25, 2026"
 set_global_assignment -name LAST_QUARTUS_VERSION "22.1std.2 Lite Edition"
+set_global_assignment -name SYSTEMVERILOG_FILE CIC.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Cordic.sv

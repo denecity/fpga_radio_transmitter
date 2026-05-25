@@ -1,5 +1,5 @@
 Analysis & Synthesis report for main
-Mon May 25 15:54:41 2026
+Mon May 25 16:13:01 2026
 Quartus Prime Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
 
 
@@ -10,7 +10,39 @@ Quartus Prime Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. State Machine - |Main|FirFSM:fir_r|state
+ 10. State Machine - |Main|FirFSM:fir_l|state
+ 11. State Machine - |Main|AdcReader:adc_r|state_q
+ 12. State Machine - |Main|AdcReader:adc_l|state_q
+ 13. Registers Removed During Synthesis
+ 14. Removed Registers Triggering Further Register Optimizations
+ 15. General Register Statistics
+ 16. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 17. Parameter Settings for User Entity Instance: Top-level Entity: |Main
+ 18. Parameter Settings for User Entity Instance: TickGen:tickGen
+ 19. Parameter Settings for User Entity Instance: CicDecimator:cic_l
+ 20. Parameter Settings for User Entity Instance: CicDecimator:cic_l|Integrators:integrators
+ 21. Parameter Settings for User Entity Instance: CicDecimator:cic_l|Combs:combs
+ 22. Parameter Settings for User Entity Instance: CicDecimator:cic_r
+ 23. Parameter Settings for User Entity Instance: CicDecimator:cic_r|Integrators:integrators
+ 24. Parameter Settings for User Entity Instance: CicDecimator:cic_r|Combs:combs
+ 25. Parameter Settings for User Entity Instance: FirFSM:fir_l
+ 26. Parameter Settings for User Entity Instance: FirFSM:fir_l|MultiphyAddSaturated:multAdd
+ 27. Parameter Settings for User Entity Instance: FirFSM:fir_r
+ 28. Parameter Settings for User Entity Instance: FirFSM:fir_r|MultiphyAddSaturated:multAdd
+ 29. Parameter Settings for User Entity Instance: FullSinePackage:sineGen
+ 30. Parameter Settings for User Entity Instance: DDS:ddsGen
+ 31. Port Connectivity Checks: "FullSinePackage:sineGen|CordicPipeline:cordic_inst"
+ 32. Port Connectivity Checks: "CicDecimator:cic_l|Combs:combs"
+ 33. Port Connectivity Checks: "AdcReader:adc_r"
+ 34. Port Connectivity Checks: "AdcReader:adc_l"
+ 35. Post-Synthesis Netlist Statistics for Top Partition
+ 36. Elapsed Time Per Partition
+ 37. Analysis & Synthesis Messages
 
 
 
@@ -34,22 +66,27 @@ https://fpgasoftware.intel.com/eula.
 
 
 
-+------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                 ;
-+-----------------------------+------------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Mon May 25 15:54:41 2026              ;
-; Quartus Prime Version       ; 22.1std.2 Build 922 07/20/2023 SC Lite Edition ;
-; Revision Name               ; main                                           ;
-; Top-level Entity Name       ; Main                                           ;
-; Family                      ; Cyclone V                                      ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                      ;
-; Total registers             ; N/A until Partition Merge                      ;
-; Total pins                  ; N/A until Partition Merge                      ;
-; Total virtual pins          ; N/A until Partition Merge                      ;
-; Total block memory bits     ; N/A until Partition Merge                      ;
-; Total PLLs                  ; N/A until Partition Merge                      ;
-; Total DLLs                  ; N/A until Partition Merge                      ;
-+-----------------------------+------------------------------------------------+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++---------------------------------+------------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Mon May 25 16:13:01 2026          ;
+; Quartus Prime Version           ; 22.1std.2 Build 922 07/20/2023 SC Lite Edition ;
+; Revision Name                   ; main                                           ;
+; Top-level Entity Name           ; Main                                           ;
+; Family                          ; Cyclone V                                      ;
+; Logic utilization (in ALMs)     ; N/A                                            ;
+; Total registers                 ; 4554                                           ;
+; Total pins                      ; 75                                             ;
+; Total virtual pins              ; 0                                              ;
+; Total block memory bits         ; 0                                              ;
+; Total DSP Blocks                ; 6                                              ;
+; Total HSSI RX PCSs              ; 0                                              ;
+; Total HSSI PMA RX Deserializers ; 0                                              ;
+; Total HSSI TX PCSs              ; 0                                              ;
+; Total HSSI PMA TX Serializers   ; 0                                              ;
+; Total PLLs                      ; 0                                              ;
+; Total DLLs                      ; 0                                              ;
++---------------------------------+------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
@@ -147,12 +184,602 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 8           ;
 ;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Average used               ; 1.01        ;
+; Maximum used               ; 8           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.2%      ;
+;     Processor 3            ;   0.2%      ;
+;     Processor 4            ;   0.2%      ;
+;     Processor 5            ;   0.2%      ;
+;     Processor 6            ;   0.1%      ;
+;     Processor 7            ;   0.1%      ;
+;     Processor 8            ;   0.1%      ;
 +----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                           ;
++----------------------------------+-----------------+------------------------------------+------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path ; Library ;
++----------------------------------+-----------------+------------------------------------+------------------------------+---------+
+; CIC.sv                           ; yes             ; User SystemVerilog HDL File        ; /build/CIC.sv                ;         ;
+; Cordic.sv                        ; yes             ; User SystemVerilog HDL File        ; /build/Cordic.sv             ;         ;
+; Main.sv                          ; yes             ; Auto-Found SystemVerilog HDL File  ; /build/Main.sv               ;         ;
+; TickGen.sv                       ; yes             ; Auto-Found SystemVerilog HDL File  ; /build/TickGen.sv            ;         ;
+; AdcReader.sv                     ; yes             ; Auto-Found SystemVerilog HDL File  ; /build/AdcReader.sv          ;         ;
+; FirFSM.sv                        ; yes             ; Auto-Found SystemVerilog HDL File  ; /build/FirFSM.sv             ;         ;
+; FullSinePackage.sv               ; yes             ; Auto-Found SystemVerilog HDL File  ; /build/FullSinePackage.sv    ;         ;
+; StereoEncoder.sv                 ; yes             ; Auto-Found SystemVerilog HDL File  ; /build/StereoEncoder.sv      ;         ;
+; DDS.sv                           ; yes             ; Auto-Found SystemVerilog HDL File  ; /build/DDS.sv                ;         ;
++----------------------------------+-----------------+------------------------------------+------------------------------+---------+
+
+
++-------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                       ;
++---------------------------------------------+---------------------+
+; Resource                                    ; Usage               ;
++---------------------------------------------+---------------------+
+; Estimate of Logic utilization (ALMs needed) ; 2821                ;
+;                                             ;                     ;
+; Combinational ALUT usage for logic          ; 3030                ;
+;     -- 7 input functions                    ; 0                   ;
+;     -- 6 input functions                    ; 851                 ;
+;     -- 5 input functions                    ; 818                 ;
+;     -- 4 input functions                    ; 145                 ;
+;     -- <=3 input functions                  ; 1216                ;
+;                                             ;                     ;
+; Dedicated logic registers                   ; 4554                ;
+;                                             ;                     ;
+; I/O pins                                    ; 75                  ;
+;                                             ;                     ;
+; Total DSP Blocks                            ; 6                   ;
+;                                             ;                     ;
+; Maximum fan-out node                        ; MAX10_CLK1_50~input ;
+; Maximum fan-out                             ; 4554                ;
+; Total fan-out                               ; 31482               ;
+; Average fan-out                             ; 4.06                ;
++---------------------------------------------+---------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                            ;
++--------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+----------------------+--------------+
+; Compilation Hierarchy Node           ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                      ; Entity Name          ; Library Name ;
++--------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+----------------------+--------------+
+; |Main                                ; 3030 (0)            ; 4554 (0)                  ; 0                 ; 6          ; 75   ; 0            ; |Main                                                    ; Main                 ; work         ;
+;    |AdcReader:adc_l|                 ; 28 (28)             ; 41 (41)                   ; 0                 ; 0          ; 0    ; 0            ; |Main|AdcReader:adc_l                                    ; AdcReader            ; work         ;
+;    |AdcReader:adc_r|                 ; 36 (36)             ; 32 (32)                   ; 0                 ; 0          ; 0    ; 0            ; |Main|AdcReader:adc_r                                    ; AdcReader            ; work         ;
+;    |CicDecimator:cic_l|              ; 416 (4)             ; 445 (37)                  ; 0                 ; 0          ; 0    ; 0            ; |Main|CicDecimator:cic_l                                 ; CicDecimator         ; work         ;
+;       |Combs:combs|                  ; 208 (208)           ; 204 (204)                 ; 0                 ; 0          ; 0    ; 0            ; |Main|CicDecimator:cic_l|Combs:combs                     ; Combs                ; work         ;
+;       |Integrators:integrators|      ; 204 (204)           ; 204 (204)                 ; 0                 ; 0          ; 0    ; 0            ; |Main|CicDecimator:cic_l|Integrators:integrators         ; Integrators          ; work         ;
+;    |CicDecimator:cic_r|              ; 412 (1)             ; 442 (34)                  ; 0                 ; 0          ; 0    ; 0            ; |Main|CicDecimator:cic_r                                 ; CicDecimator         ; work         ;
+;       |Combs:combs|                  ; 207 (207)           ; 204 (204)                 ; 0                 ; 0          ; 0    ; 0            ; |Main|CicDecimator:cic_r|Combs:combs                     ; Combs                ; work         ;
+;       |Integrators:integrators|      ; 204 (204)           ; 204 (204)                 ; 0                 ; 0          ; 0    ; 0            ; |Main|CicDecimator:cic_r|Integrators:integrators         ; Integrators          ; work         ;
+;    |DDS:ddsGen|                      ; 38 (38)             ; 32 (32)                   ; 0                 ; 1          ; 0    ; 0            ; |Main|DDS:ddsGen                                         ; DDS                  ; work         ;
+;    |FirFSM:fir_l|                    ; 496 (477)           ; 1326 (1326)               ; 0                 ; 1          ; 0    ; 0            ; |Main|FirFSM:fir_l                                       ; FirFSM               ; work         ;
+;       |MultiphyAddSaturated:multAdd| ; 19 (19)             ; 0 (0)                     ; 0                 ; 1          ; 0    ; 0            ; |Main|FirFSM:fir_l|MultiphyAddSaturated:multAdd          ; MultiphyAddSaturated ; work         ;
+;    |FirFSM:fir_r|                    ; 532 (513)           ; 1316 (1316)               ; 0                 ; 1          ; 0    ; 0            ; |Main|FirFSM:fir_r                                       ; FirFSM               ; work         ;
+;       |MultiphyAddSaturated:multAdd| ; 19 (19)             ; 0 (0)                     ; 0                 ; 1          ; 0    ; 0            ; |Main|FirFSM:fir_r|MultiphyAddSaturated:multAdd          ; MultiphyAddSaturated ; work         ;
+;    |FullSinePackage:sineGen|         ; 1002 (31)           ; 880 (63)                  ; 0                 ; 1          ; 0    ; 0            ; |Main|FullSinePackage:sineGen                            ; FullSinePackage      ; work         ;
+;       |CordicPipeline:cordic_inst|   ; 971 (971)           ; 817 (817)                 ; 0                 ; 0          ; 0    ; 0            ; |Main|FullSinePackage:sineGen|CordicPipeline:cordic_inst ; CordicPipeline       ; work         ;
+;    |StereoEncoder:stereoEncoder|     ; 38 (38)             ; 16 (16)                   ; 0                 ; 2          ; 0    ; 0            ; |Main|StereoEncoder:stereoEncoder                        ; StereoEncoder        ; work         ;
+;    |TickGen:tickGen|                 ; 32 (32)             ; 24 (24)                   ; 0                 ; 0          ; 0    ; 0            ; |Main|TickGen:tickGen                                    ; TickGen              ; work         ;
++--------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+----------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary    ;
++-----------------------------------+-------------+
+; Statistic                         ; Number Used ;
++-----------------------------------+-------------+
+; Two Independent 18x18             ; 5           ;
+; Independent 18x18 plus 36         ; 1           ;
+; Total number of DSP blocks        ; 6           ;
+;                                   ;             ;
+; Fixed Point Signed Multiplier     ; 4           ;
+; Fixed Point Unsigned Multiplier   ; 1           ;
+; Fixed Point Mixed Sign Multiplier ; 1           ;
+; Fixed Point Dedicated Pre-Adder   ; 1           ;
++-----------------------------------+-------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------+
+; State Machine - |Main|FirFSM:fir_r|state                  ;
++---------------+------------+--------------+---------------+
+; Name          ; state.IDLE ; state.FINISH ; state.ITERATE ;
++---------------+------------+--------------+---------------+
+; state.IDLE    ; 0          ; 0            ; 0             ;
+; state.ITERATE ; 1          ; 0            ; 1             ;
+; state.FINISH  ; 1          ; 1            ; 0             ;
++---------------+------------+--------------+---------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------+
+; State Machine - |Main|FirFSM:fir_l|state                  ;
++---------------+------------+--------------+---------------+
+; Name          ; state.IDLE ; state.FINISH ; state.ITERATE ;
++---------------+------------+--------------+---------------+
+; state.IDLE    ; 0          ; 0            ; 0             ;
+; state.ITERATE ; 1          ; 0            ; 1             ;
+; state.FINISH  ; 1          ; 1            ; 0             ;
++---------------+------------+--------------+---------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------+
+; State Machine - |Main|AdcReader:adc_r|state_q                                                         ;
++------------------+-----------------+-----------------+------------------+--------------+--------------+
+; Name             ; state_q.CLK_LOW ; state_q.CLK_SET ; state_q.CNV_DOWN ; state_q.IDLE ; state_q.DONE ;
++------------------+-----------------+-----------------+------------------+--------------+--------------+
+; state_q.IDLE     ; 0               ; 0               ; 0                ; 0            ; 0            ;
+; state_q.CNV_DOWN ; 0               ; 0               ; 1                ; 1            ; 0            ;
+; state_q.CLK_SET  ; 0               ; 1               ; 0                ; 1            ; 0            ;
+; state_q.CLK_LOW  ; 1               ; 0               ; 0                ; 1            ; 0            ;
+; state_q.DONE     ; 0               ; 0               ; 0                ; 1            ; 1            ;
++------------------+-----------------+-----------------+------------------+--------------+--------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------+
+; State Machine - |Main|AdcReader:adc_l|state_q                                                         ;
++------------------+-----------------+-----------------+------------------+--------------+--------------+
+; Name             ; state_q.CLK_LOW ; state_q.CLK_SET ; state_q.CNV_DOWN ; state_q.IDLE ; state_q.DONE ;
++------------------+-----------------+-----------------+------------------+--------------+--------------+
+; state_q.IDLE     ; 0               ; 0               ; 0                ; 0            ; 0            ;
+; state_q.CNV_DOWN ; 0               ; 0               ; 1                ; 1            ; 0            ;
+; state_q.CLK_SET  ; 0               ; 1               ; 0                ; 1            ; 0            ;
+; state_q.CLK_LOW  ; 1               ; 0               ; 0                ; 1            ; 0            ;
+; state_q.DONE     ; 0               ; 0               ; 0                ; 1            ; 1            ;
++------------------+-----------------+-----------------+------------------+--------------+--------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                    ;
++-----------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
+; Register name                                                                                 ; Reason for Removal                                                                    ;
++-----------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[1].z[0]                      ; Stuck at GND due to stuck port data_in                                                ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[2].z[0]                      ; Stuck at GND due to stuck port data_in                                                ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[3].z[0]                      ; Stuck at GND due to stuck port data_in                                                ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[4].z[0]                      ; Stuck at GND due to stuck port data_in                                                ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[5].z[0]                      ; Stuck at GND due to stuck port data_in                                                ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[6].z[0]                      ; Stuck at GND due to stuck port data_in                                                ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[7].z[0]                      ; Stuck at GND due to stuck port data_in                                                ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[1].x[0,1,3,7,10,13,14,16,17] ; Stuck at GND due to stuck port data_in                                                ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[1].y[0,1]                    ; Stuck at GND due to stuck port data_in                                                ;
+; CicDecimator:cic_r|decimator_counter[2]                                                       ; Merged with CicDecimator:cic_l|decimator_counter[2]                                   ;
+; CicDecimator:cic_r|decimator_counter[1]                                                       ; Merged with CicDecimator:cic_l|decimator_counter[1]                                   ;
+; CicDecimator:cic_r|decimator_counter[0]                                                       ; Merged with CicDecimator:cic_l|decimator_counter[0]                                   ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[1].x[2,4..6,8,9,12,15]       ; Merged with FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[1].x[11] ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[1].y[2]                      ; Merged with FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[1].x[11] ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[8].z[0]                      ; Merged with FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[1].x[11] ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[1].y[3,7,13,14,16,17]        ; Merged with FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[1].y[10] ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[1].y[4..6,8,9,12,15]         ; Merged with FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[1].y[11] ;
+; AdcReader:adc_r|state_q~2                                                                     ; Lost fanout                                                                           ;
+; AdcReader:adc_r|state_q~3                                                                     ; Lost fanout                                                                           ;
+; AdcReader:adc_r|state_q~5                                                                     ; Lost fanout                                                                           ;
+; AdcReader:adc_r|state_q~6                                                                     ; Lost fanout                                                                           ;
+; AdcReader:adc_l|state_q~2                                                                     ; Lost fanout                                                                           ;
+; AdcReader:adc_l|state_q~3                                                                     ; Lost fanout                                                                           ;
+; AdcReader:adc_l|state_q~5                                                                     ; Lost fanout                                                                           ;
+; AdcReader:adc_l|state_q~6                                                                     ; Lost fanout                                                                           ;
+; AdcReader:adc_r|state_q.DONE                                                                  ; Merged with AdcReader:adc_l|state_q.DONE                                              ;
+; AdcReader:adc_r|state_q.IDLE                                                                  ; Merged with AdcReader:adc_l|state_q.IDLE                                              ;
+; AdcReader:adc_r|state_q.CLK_SET                                                               ; Merged with AdcReader:adc_l|state_q.CLK_SET                                           ;
+; AdcReader:adc_r|bit_counter_q[3]                                                              ; Merged with AdcReader:adc_l|bit_counter_q[3]                                          ;
+; AdcReader:adc_r|bit_counter_q[2]                                                              ; Merged with AdcReader:adc_l|bit_counter_q[2]                                          ;
+; AdcReader:adc_r|bit_counter_q[0]                                                              ; Merged with AdcReader:adc_l|bit_counter_q[0]                                          ;
+; AdcReader:adc_r|bit_counter_q[1]                                                              ; Merged with AdcReader:adc_l|bit_counter_q[1]                                          ;
+; AdcReader:adc_r|state_q.CLK_LOW                                                               ; Merged with AdcReader:adc_l|state_q.CLK_LOW                                           ;
+; AdcReader:adc_r|state_q.CNV_DOWN                                                              ; Merged with AdcReader:adc_l|state_q.CNV_DOWN                                          ;
+; FirFSM:fir_r|state.FINISH                                                                     ; Merged with FirFSM:fir_l|state.FINISH                                                 ;
+; FirFSM:fir_r|state.IDLE                                                                       ; Merged with FirFSM:fir_l|state.IDLE                                                   ;
+; FirFSM:fir_r|iteration[6]                                                                     ; Merged with FirFSM:fir_l|iteration[6]                                                 ;
+; FirFSM:fir_r|iteration[5]                                                                     ; Merged with FirFSM:fir_l|iteration[5]                                                 ;
+; FirFSM:fir_r|iteration[4]                                                                     ; Merged with FirFSM:fir_l|iteration[4]                                                 ;
+; FirFSM:fir_r|iteration[3]                                                                     ; Merged with FirFSM:fir_l|iteration[3]                                                 ;
+; FirFSM:fir_r|iteration[2]                                                                     ; Merged with FirFSM:fir_l|iteration[2]                                                 ;
+; FirFSM:fir_r|iteration[1]                                                                     ; Merged with FirFSM:fir_l|iteration[1]                                                 ;
+; FirFSM:fir_r|iteration[0]                                                                     ; Merged with FirFSM:fir_l|iteration[0]                                                 ;
+; FirFSM:fir_r|state.ITERATE                                                                    ; Merged with FirFSM:fir_l|state.ITERATE                                                ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[2].x[0]                      ; Stuck at GND due to stuck port data_in                                                ;
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[2].y[0]                      ; Stuck at GND due to stuck port data_in                                                ;
+; Total Number of Removed Registers = 73                                                        ;                                                                                       ;
++-----------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                      ;
++--------------------------------------------------------------------------+---------------------------+---------------------------------------------------------------------------+
+; Register name                                                            ; Reason for Removal        ; Registers Removed due to This Register                                    ;
++--------------------------------------------------------------------------+---------------------------+---------------------------------------------------------------------------+
+; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[1].z[0] ; Stuck at GND              ; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[2].z[0], ;
+;                                                                          ; due to stuck port data_in ; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[3].z[0], ;
+;                                                                          ;                           ; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[4].z[0], ;
+;                                                                          ;                           ; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[5].z[0], ;
+;                                                                          ;                           ; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[6].z[0], ;
+;                                                                          ;                           ; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[7].z[0], ;
+;                                                                          ;                           ; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[2].x[0], ;
+;                                                                          ;                           ; FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[2].y[0]  ;
++--------------------------------------------------------------------------+---------------------------+---------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 4554  ;
+; Number of registers using Synchronous Clear  ; 4510  ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 3630  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
+; 3:1                ; 18 bits   ; 36 LEs        ; 0 LEs                ; 36 LEs                 ; Yes        ; |Main|FirFSM:fir_r|out_reg[10]                                                   ;
+; 3:1                ; 18 bits   ; 36 LEs        ; 0 LEs                ; 36 LEs                 ; Yes        ; |Main|FirFSM:fir_l|out_reg[8]                                                    ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |Main|AdcReader:adc_r|out_data_q[1]                                              ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |Main|AdcReader:adc_l|out_data_q[12]                                             ;
+; 3:1                ; 408 bits  ; 816 LEs       ; 0 LEs                ; 816 LEs                ; Yes        ; |Main|CicDecimator:cic_l|Integrators:integrators|inte_delayed[4][20]             ;
+; 3:1                ; 555 bits  ; 1110 LEs      ; 0 LEs                ; 1110 LEs               ; Yes        ; |Main|CicDecimator:cic_l|Combs:combs|comb_delayed[5][8]                          ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 0 LEs                ; 48 LEs                 ; Yes        ; |Main|TickGen:tickGen|counter[17]                                                ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Main|FullSinePackage:sineGen|CordicPipeline:cordic_inst|pipeline_regs[16].y[10] ;
+; 3:1                ; 1264 bits ; 2528 LEs      ; 0 LEs                ; 2528 LEs               ; Yes        ; |Main|FirFSM:fir_r|in_reg[61][4]                                                 ;
+; 3:1                ; 1264 bits ; 2528 LEs      ; 0 LEs                ; 2528 LEs               ; Yes        ; |Main|FirFSM:fir_l|in_reg[50][8]                                                 ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Main|AdcReader:adc_r|bit_counter_q[2]                                           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Main|AdcReader:adc_l|bit_counter_q[3]                                           ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |Main|CicDecimator:cic_l|decimator_counter[0]                                    ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |Main|FirFSM:fir_r|iteration[3]                                                  ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |Main|FirFSM:fir_l|iteration[1]                                                  ;
+; 6:1                ; 18 bits   ; 72 LEs        ; 36 LEs               ; 36 LEs                 ; Yes        ; |Main|FirFSM:fir_r|sum[16]                                                       ;
+; 6:1                ; 18 bits   ; 72 LEs        ; 36 LEs               ; 36 LEs                 ; Yes        ; |Main|FirFSM:fir_l|sum[4]                                                        ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |Main|FirFSM:fir_r|signal_o[2]                                                   ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |Main|FirFSM:fir_l|signal_o[5]                                                   ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |Main|AdcReader:adc_r|state_q                                                    ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |Main|AdcReader:adc_r|state_q                                                    ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |Main|AdcReader:adc_l|state_q                                                    ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |Main|AdcReader:adc_l|state_q                                                    ;
+; 128:1              ; 16 bits   ; 1360 LEs      ; 864 LEs              ; 496 LEs                ; No         ; |Main|FirFSM:fir_r|Mux6                                                          ;
+; 128:1              ; 16 bits   ; 1360 LEs      ; 864 LEs              ; 496 LEs                ; No         ; |Main|FirFSM:fir_l|Mux0                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |Main                                                  ;
++-------------------+----------------------------------------------------------------------------------+----------------+
+; Parameter Name    ; Value                                                                            ; Type           ;
++-------------------+----------------------------------------------------------------------------------+----------------+
+; num_of_stages_fir ; 80                                                                               ; Signed Integer ;
+; coeffs_fir        ; (111111111111100111,000000000000000010,000000000000011110,000000000000100111,000 ; Array/Record   ;
+; coeffs_fir        ; 000000000010011,111111111111100111,111111111111000011,111111111111001000,0000000 ;                ;
+; coeffs_fir        ; 00000000010,000000000001010000,000000000001110010,000000000000111001,11111111111 ;                ;
+; coeffs_fir        ; 0111001,111111111101001111,111111111101011111,000000000000000010,000000000011010 ;                ;
+; coeffs_fir        ; 100,000000000100101011,000000000010010111,111111111101011001,111111111001010100, ;                ;
+; coeffs_fir        ; 111111111001111010,111111111111110101,000000000111011011,000000001010101001,0000 ;                ;
+; coeffs_fir        ; 00000101101001,111111111010100111,111111110001010011,111111110001111111,11111111 ;                ;
+; coeffs_fir        ; 1110110000,000000010000001011,000000011000111111,000000001111001110,111111110100 ;                ;
+; coeffs_fir        ; 111110,111111011010001101,111111010100110001,111111110010110011,0000001011111101 ;                ;
+; coeffs_fir        ; 10,000001110100011110,000010100001100111,000010100001100111,000001110100011110,0 ;                ;
+; coeffs_fir        ; 00000101111110110,111111110010110011,111111010100110001,111111011010001101,11111 ;                ;
+; coeffs_fir        ; 1110100111110,000000001111001110,000000011000111111,000000010000001011,111111111 ;                ;
+; coeffs_fir        ; 110110000,111111110001111111,111111110001010011,111111111010100111,0000000001011 ;                ;
+; coeffs_fir        ; 01001,000000001010101001,000000000111011011,111111111111110101,11111111100111101 ;                ;
+; coeffs_fir        ; 0,111111111001010100,111111111101011001,000000000010010111,000000000100101011,00 ;                ;
+; coeffs_fir        ; 0000000011010100,000000000000000010,111111111101011111,111111111101001111,111111 ;                ;
+; coeffs_fir        ; 111110111001,000000000000111001,000000000001110010,000000000001010000,0000000000 ;                ;
+; coeffs_fir        ; 00000010,111111111111001000,111111111111000011,111111111111100111,00000000000001 ;                ;
+; coeffs_fir        ; 0011,000000000000100111,000000000000011110,000000000000000010,111111111111100111 ;                ;
+;                   ; )                                                                                ;                ;
++-------------------+----------------------------------------------------------------------------------+----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: TickGen:tickGen ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; DIVIDER        ; 50    ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CicDecimator:cic_l ;
++-------------------+-------+-------------------------------------+
+; Parameter Name    ; Value ; Type                                ;
++-------------------+-------+-------------------------------------+
+; num_of_stages     ; 6     ; Signed Integer                      ;
+; decimation_factor ; 8     ; Signed Integer                      ;
+; num_bits_input    ; 16    ; Signed Integer                      ;
+; num_bits_output   ; 16    ; Signed Integer                      ;
++-------------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CicDecimator:cic_l|Integrators:integrators ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; num_of_stages  ; 6     ; Signed Integer                                                 ;
+; num_bits       ; 34    ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CicDecimator:cic_l|Combs:combs ;
++----------------+-------+----------------------------------------------------+
+; Parameter Name ; Value ; Type                                               ;
++----------------+-------+----------------------------------------------------+
+; num_of_stages  ; 6     ; Signed Integer                                     ;
+; num_bits       ; 34    ; Signed Integer                                     ;
++----------------+-------+----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CicDecimator:cic_r ;
++-------------------+-------+-------------------------------------+
+; Parameter Name    ; Value ; Type                                ;
++-------------------+-------+-------------------------------------+
+; num_of_stages     ; 6     ; Signed Integer                      ;
+; decimation_factor ; 8     ; Signed Integer                      ;
+; num_bits_input    ; 16    ; Signed Integer                      ;
+; num_bits_output   ; 16    ; Signed Integer                      ;
++-------------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CicDecimator:cic_r|Integrators:integrators ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; num_of_stages  ; 6     ; Signed Integer                                                 ;
+; num_bits       ; 34    ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: CicDecimator:cic_r|Combs:combs ;
++----------------+-------+----------------------------------------------------+
+; Parameter Name ; Value ; Type                                               ;
++----------------+-------+----------------------------------------------------+
+; num_of_stages  ; 6     ; Signed Integer                                     ;
+; num_bits       ; 34    ; Signed Integer                                     ;
++----------------+-------+----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: FirFSM:fir_l                                                                ;
++----------------------+----------------------------------------------------------------------------------+----------------+
+; Parameter Name       ; Value                                                                            ; Type           ;
++----------------------+----------------------------------------------------------------------------------+----------------+
+; num_of_bits_internal ; 18                                                                               ; Signed Integer ;
+; num_of_bits_io       ; 16                                                                               ; Signed Integer ;
+; num_of_stages        ; 80                                                                               ; Signed Integer ;
+; coeffs               ; A(SB"111111111111100111",SB"000000000000000010",SB"000000000000011110",SB"000000 ; Array/Record   ;
+; coeffs               ; 000000100111",SB"000000000000010011",SB"111111111111100111",SB"11111111111100001 ;                ;
+; coeffs               ; 1",SB"111111111111001000",SB"000000000000000010",SB"000000000001010000",SB"00000 ;                ;
+; coeffs               ; 0000001110010",SB"000000000000111001",SB"111111111110111001",SB"1111111111010011 ;                ;
+; coeffs               ; 11",SB"111111111101011111",SB"000000000000000010",SB"000000000011010100",SB"0000 ;                ;
+; coeffs               ; 00000100101011",SB"000000000010010111",SB"111111111101011001",SB"111111111001010 ;                ;
+; coeffs               ; 100",SB"111111111001111010",SB"111111111111110101",SB"000000000111011011",SB"000 ;                ;
+; coeffs               ; 000001010101001",SB"000000000101101001",SB"111111111010100111",SB"11111111000101 ;                ;
+; coeffs               ; 0011",SB"111111110001111111",SB"111111111110110000",SB"000000010000001011",SB"00 ;                ;
+; coeffs               ; 0000011000111111",SB"000000001111001110",SB"111111110100111110",SB"1111110110100 ;                ;
+; coeffs               ; 01101",SB"111111010100110001",SB"111111110010110011",SB"000000101111110110",SB"0 ;                ;
+; coeffs               ; 00001110100011110",SB"000010100001100111",SB"000010100001100111",SB"000001110100 ;                ;
+; coeffs               ; 011110",SB"000000101111110110",SB"111111110010110011",SB"111111010100110001",SB" ;                ;
+; coeffs               ; 111111011010001101",SB"111111110100111110",SB"000000001111001110",SB"00000001100 ;                ;
+; coeffs               ; 0111111",SB"000000010000001011",SB"111111111110110000",SB"111111110001111111",SB ;                ;
+; coeffs               ; "111111110001010011",SB"111111111010100111",SB"000000000101101001",SB"0000000010 ;                ;
+; coeffs               ; 10101001",SB"000000000111011011",SB"111111111111110101",SB"111111111001111010",S ;                ;
+; coeffs               ; B"111111111001010100",SB"111111111101011001",SB"000000000010010111",SB"000000000 ;                ;
+; coeffs               ; 100101011",SB"000000000011010100",SB"000000000000000010",SB"111111111101011111", ;                ;
+; coeffs               ; SB"111111111101001111",SB"111111111110111001",SB"000000000000111001",SB"00000000 ;                ;
+; coeffs               ; 0001110010",SB"000000000001010000",SB"000000000000000010",SB"111111111111001000" ;                ;
+; coeffs               ; ,SB"111111111111000011",SB"111111111111100111",SB"000000000000010011",SB"0000000 ;                ;
+; coeffs               ; 00000100111",SB"000000000000011110",SB"000000000000000010",SB"111111111111100111 ;                ;
+;                      ; ")                                                                               ;                ;
++----------------------+----------------------------------------------------------------------------------+----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: FirFSM:fir_l|MultiphyAddSaturated:multAdd ;
++----------------------+-------+---------------------------------------------------------+
+; Parameter Name       ; Value ; Type                                                    ;
++----------------------+-------+---------------------------------------------------------+
+; num_of_bits_internal ; 18    ; Signed Integer                                          ;
+; num_of_bits_io       ; 16    ; Signed Integer                                          ;
++----------------------+-------+---------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: FirFSM:fir_r                                                                ;
++----------------------+----------------------------------------------------------------------------------+----------------+
+; Parameter Name       ; Value                                                                            ; Type           ;
++----------------------+----------------------------------------------------------------------------------+----------------+
+; num_of_bits_internal ; 18                                                                               ; Signed Integer ;
+; num_of_bits_io       ; 16                                                                               ; Signed Integer ;
+; num_of_stages        ; 80                                                                               ; Signed Integer ;
+; coeffs               ; A(SB"111111111111100111",SB"000000000000000010",SB"000000000000011110",SB"000000 ; Array/Record   ;
+; coeffs               ; 000000100111",SB"000000000000010011",SB"111111111111100111",SB"11111111111100001 ;                ;
+; coeffs               ; 1",SB"111111111111001000",SB"000000000000000010",SB"000000000001010000",SB"00000 ;                ;
+; coeffs               ; 0000001110010",SB"000000000000111001",SB"111111111110111001",SB"1111111111010011 ;                ;
+; coeffs               ; 11",SB"111111111101011111",SB"000000000000000010",SB"000000000011010100",SB"0000 ;                ;
+; coeffs               ; 00000100101011",SB"000000000010010111",SB"111111111101011001",SB"111111111001010 ;                ;
+; coeffs               ; 100",SB"111111111001111010",SB"111111111111110101",SB"000000000111011011",SB"000 ;                ;
+; coeffs               ; 000001010101001",SB"000000000101101001",SB"111111111010100111",SB"11111111000101 ;                ;
+; coeffs               ; 0011",SB"111111110001111111",SB"111111111110110000",SB"000000010000001011",SB"00 ;                ;
+; coeffs               ; 0000011000111111",SB"000000001111001110",SB"111111110100111110",SB"1111110110100 ;                ;
+; coeffs               ; 01101",SB"111111010100110001",SB"111111110010110011",SB"000000101111110110",SB"0 ;                ;
+; coeffs               ; 00001110100011110",SB"000010100001100111",SB"000010100001100111",SB"000001110100 ;                ;
+; coeffs               ; 011110",SB"000000101111110110",SB"111111110010110011",SB"111111010100110001",SB" ;                ;
+; coeffs               ; 111111011010001101",SB"111111110100111110",SB"000000001111001110",SB"00000001100 ;                ;
+; coeffs               ; 0111111",SB"000000010000001011",SB"111111111110110000",SB"111111110001111111",SB ;                ;
+; coeffs               ; "111111110001010011",SB"111111111010100111",SB"000000000101101001",SB"0000000010 ;                ;
+; coeffs               ; 10101001",SB"000000000111011011",SB"111111111111110101",SB"111111111001111010",S ;                ;
+; coeffs               ; B"111111111001010100",SB"111111111101011001",SB"000000000010010111",SB"000000000 ;                ;
+; coeffs               ; 100101011",SB"000000000011010100",SB"000000000000000010",SB"111111111101011111", ;                ;
+; coeffs               ; SB"111111111101001111",SB"111111111110111001",SB"000000000000111001",SB"00000000 ;                ;
+; coeffs               ; 0001110010",SB"000000000001010000",SB"000000000000000010",SB"111111111111001000" ;                ;
+; coeffs               ; ,SB"111111111111000011",SB"111111111111100111",SB"000000000000010011",SB"0000000 ;                ;
+; coeffs               ; 00000100111",SB"000000000000011110",SB"000000000000000010",SB"111111111111100111 ;                ;
+;                      ; ")                                                                               ;                ;
++----------------------+----------------------------------------------------------------------------------+----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: FirFSM:fir_r|MultiphyAddSaturated:multAdd ;
++----------------------+-------+---------------------------------------------------------+
+; Parameter Name       ; Value ; Type                                                    ;
++----------------------+-------+---------------------------------------------------------+
+; num_of_bits_internal ; 18    ; Signed Integer                                          ;
+; num_of_bits_io       ; 16    ; Signed Integer                                          ;
++----------------------+-------+---------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: FullSinePackage:sineGen ;
++----------------+--------+--------------------------------------------+
+; Parameter Name ; Value  ; Type                                       ;
++----------------+--------+--------------------------------------------+
+; SAMPLE_FREQ    ; 100000 ; Signed Integer                             ;
+; OUT_FREQ       ; 19000  ; Signed Integer                             ;
+; N_BITS         ; 32     ; Signed Integer                             ;
++----------------+--------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: DDS:ddsGen                         ;
++----------------------------+----------------------------------+-----------------+
+; Parameter Name             ; Value                            ; Type            ;
++----------------------------+----------------------------------+-----------------+
+; N_bits                     ; 32                               ; Signed Integer  ;
+; TUNING_WORD                ; 01100110011001100110011001100110 ; Unsigned Binary ;
+; SIGNAL_MULTIPLIER          ; 00000000000000000000000000100111 ; Unsigned Binary ;
+; SIGNAL_STRENGTH_MULTIPLIER ; 00000000000000000000000000000001 ; Unsigned Binary ;
+; threshold                  ; 0000000000000000                 ; Signed Binary   ;
++----------------------------+----------------------------------+-----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Port Connectivity Checks: "FullSinePackage:sineGen|CordicPipeline:cordic_inst" ;
++-------------+-------+----------+-----------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                       ;
++-------------+-------+----------+-----------------------------------------------+
+; tick        ; Input ; Info     ; Stuck at VCC                                  ;
+; x_i[11..10] ; Input ; Info     ; Stuck at VCC                                  ;
+; x_i[8..7]   ; Input ; Info     ; Stuck at VCC                                  ;
+; x_i[5..3]   ; Input ; Info     ; Stuck at VCC                                  ;
+; x_i[13..12] ; Input ; Info     ; Stuck at GND                                  ;
+; x_i[15]     ; Input ; Info     ; Stuck at GND                                  ;
+; x_i[14]     ; Input ; Info     ; Stuck at VCC                                  ;
+; x_i[9]      ; Input ; Info     ; Stuck at GND                                  ;
+; x_i[6]      ; Input ; Info     ; Stuck at GND                                  ;
+; x_i[2]      ; Input ; Info     ; Stuck at GND                                  ;
+; x_i[1]      ; Input ; Info     ; Stuck at VCC                                  ;
+; x_i[0]      ; Input ; Info     ; Stuck at GND                                  ;
++-------------+-------+----------+-----------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "CicDecimator:cic_l|Combs:combs"                                                                ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; signal_o[17..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------+
+; Port Connectivity Checks: "AdcReader:adc_r"            ;
++-----------+--------+----------+------------------------+
+; Port      ; Type   ; Severity ; Details                ;
++-----------+--------+----------+------------------------+
+; is_idle_o ; Output ; Info     ; Explicitly unconnected ;
++-----------+--------+----------+------------------------+
+
+
++--------------------------------------------------------+
+; Port Connectivity Checks: "AdcReader:adc_l"            ;
++-----------+--------+----------+------------------------+
+; Port      ; Type   ; Severity ; Details                ;
++-----------+--------+----------+------------------------+
+; is_idle_o ; Output ; Info     ; Explicitly unconnected ;
++-----------+--------+----------+------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 4554                        ;
+;     ENA               ; 33                          ;
+;     ENA SCLR          ; 3597                        ;
+;     SCLR              ; 913                         ;
+;     plain             ; 11                          ;
+; arriav_io_obuf        ; 10                          ;
+; arriav_lcell_comb     ; 3032                        ;
+;     arith             ; 1360                        ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 138                         ;
+;         2 data inputs ; 469                         ;
+;         3 data inputs ; 12                          ;
+;         4 data inputs ; 57                          ;
+;         5 data inputs ; 683                         ;
+;     normal            ; 1221                        ;
+;         0 data inputs ; 2                           ;
+;         1 data inputs ; 1                           ;
+;         2 data inputs ; 26                          ;
+;         3 data inputs ; 118                         ;
+;         4 data inputs ; 88                          ;
+;         5 data inputs ; 135                         ;
+;         6 data inputs ; 851                         ;
+;     shared            ; 451                         ;
+;         0 data inputs ; 6                           ;
+;         2 data inputs ; 426                         ;
+;         3 data inputs ; 19                          ;
+; arriav_mac            ; 6                           ;
+; boundary_port         ; 75                          ;
+;                       ;                             ;
+; Max LUT depth         ; 9.30                        ;
+; Average LUT depth     ; 5.05                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:04     ;
++----------------+--------------+
 
 
 +-------------------------------+
@@ -161,11 +788,22 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
-    Info: Processing started: Mon May 25 15:54:28 2026
+    Info: Processing started: Mon May 25 16:12:43 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off main -c main
 Info (20034): Auto device selection is not supported for Cyclone V device family. The default device, 5CGXFC7C7F23C8, is set.
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 8 of the 8 processors detected
+Info (12021): Found 4 design units, including 4 entities, in source file CIC.sv
+    Info (12023): Found entity 1: CicDecimator File: /build/CIC.sv Line: 4
+    Info (12023): Found entity 2: CicInterpolator File: /build/CIC.sv Line: 88
+    Info (12023): Found entity 3: Integrators File: /build/CIC.sv Line: 164
+    Info (12023): Found entity 4: Combs File: /build/CIC.sv Line: 200
+Info (12021): Found 2 design units, including 2 entities, in source file Cordic.sv
+    Info (12023): Found entity 1: CordicFSM File: /build/Cordic.sv Line: 55
+    Info (12023): Found entity 2: CordicPipeline File: /build/Cordic.sv Line: 162
+Warning (10222): Verilog HDL Parameter Declaration warning at CIC.sv(18): Parameter Declaration in module "CicDecimator" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /build/CIC.sv Line: 18
+Warning (10222): Verilog HDL Parameter Declaration warning at CIC.sv(38): Parameter Declaration in module "CicDecimator" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /build/CIC.sv Line: 38
+Warning (10222): Verilog HDL Parameter Declaration warning at CIC.sv(102): Parameter Declaration in module "CicInterpolator" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /build/CIC.sv Line: 102
 Warning (12125): Using design file Main.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: Main File: /build/Main.sv Line: 2
 Info (12127): Elaborating entity "Main" for the top level hierarchy
@@ -177,6 +815,10 @@ Info (12128): Elaborating entity "TickGen" for hierarchy "TickGen:tickGen" File:
 Warning (12125): Using design file AdcReader.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: AdcReader File: /build/AdcReader.sv Line: 12
 Info (12128): Elaborating entity "AdcReader" for hierarchy "AdcReader:adc_l" File: /build/Main.sv Line: 82
+Info (12128): Elaborating entity "CicDecimator" for hierarchy "CicDecimator:cic_l" File: /build/Main.sv Line: 104
+Warning (10230): Verilog HDL assignment warning at CIC.sv(53): truncated value with size 32 to match size of target (3) File: /build/CIC.sv Line: 53
+Info (12128): Elaborating entity "Integrators" for hierarchy "CicDecimator:cic_l|Integrators:integrators" File: /build/CIC.sv Line: 34
+Info (12128): Elaborating entity "Combs" for hierarchy "CicDecimator:cic_l|Combs:combs" File: /build/CIC.sv Line: 74
 Warning (12125): Using design file FirFSM.sv, which is not specified as a design file for the current project, but contains definitions for 3 design units and 3 entities in project
     Info (12023): Found entity 1: FirFSM File: /build/FirFSM.sv Line: 10
     Info (12023): Found entity 2: MultiphyAddSaturated File: /build/FirFSM.sv Line: 190
@@ -196,6 +838,7 @@ Warning (12125): Using design file FullSinePackage.sv, which is not specified as
     Info (12023): Found entity 1: FullSinePackage File: /build/FullSinePackage.sv Line: 10
 Info (12128): Elaborating entity "FullSinePackage" for hierarchy "FullSinePackage:sineGen" File: /build/Main.sv Line: 148
 Warning (10230): Verilog HDL assignment warning at FullSinePackage.sv(26): truncated value with size 64 to match size of target (32) File: /build/FullSinePackage.sv Line: 26
+Info (12128): Elaborating entity "CordicPipeline" for hierarchy "FullSinePackage:sineGen|CordicPipeline:cordic_inst" File: /build/FullSinePackage.sv Line: 59
 Warning (12125): Using design file StereoEncoder.sv, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: StereoEncoder File: /build/StereoEncoder.sv Line: 17
 Info (12128): Elaborating entity "StereoEncoder" for hierarchy "StereoEncoder:stereoEncoder" File: /build/Main.sv Line: 160
@@ -204,13 +847,106 @@ Warning (12125): Using design file DDS.sv, which is not specified as a design fi
 Info (12128): Elaborating entity "DDS" for hierarchy "DDS:ddsGen" File: /build/Main.sv Line: 168
 Warning (10259): Verilog HDL error at DDS.sv(43): constant value overflow File: /build/DDS.sv Line: 43
 Warning (10230): Verilog HDL assignment warning at DDS.sv(44): truncated value with size 32 to match size of target (16) File: /build/DDS.sv Line: 44
-Error (12006): Node instance "cic_l" instantiates undefined entity "CicDecimator". Ensure that required library paths are specified correctly, define the specified entity, or change the instantiation. If this entity represents Intel FPGA or third-party IP, generate the synthesis files for the IP. File: /build/Main.sv Line: 104
-Error (12006): Node instance "cic_r" instantiates undefined entity "CicDecimator". Ensure that required library paths are specified correctly, define the specified entity, or change the instantiation. If this entity represents Intel FPGA or third-party IP, generate the synthesis files for the IP. File: /build/Main.sv Line: 113
-Error (12006): Node instance "cordic_inst" instantiates undefined entity "CordicPipeline". Ensure that required library paths are specified correctly, define the specified entity, or change the instantiation. If this entity represents Intel FPGA or third-party IP, generate the synthesis files for the IP. File: /build/FullSinePackage.sv Line: 59
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 3 errors, 22 warnings
-    Error: Peak virtual memory: 693 megabytes
-    Error: Processing ended: Mon May 25 15:54:41 2026
-    Error: Elapsed time: 00:00:13
-    Error: Total CPU time (on all processors): 00:00:24
+Warning (13034): The following nodes have both tri-state and non-tri-state drivers
+    Warning (13035): Inserted always-enabled tri-state buffer between "ARDUINO_IO[0]" and its non-tri-state driver. File: /build/Main.sv Line: 5
+    Warning (13035): Inserted always-enabled tri-state buffer between "ARDUINO_IO[1]" and its non-tri-state driver. File: /build/Main.sv Line: 5
+    Warning (13035): Inserted always-enabled tri-state buffer between "ARDUINO_IO[4]" and its non-tri-state driver. File: /build/Main.sv Line: 5
+    Warning (13035): Inserted always-enabled tri-state buffer between "ARDUINO_IO[5]" and its non-tri-state driver. File: /build/Main.sv Line: 5
+    Warning (13035): Inserted always-enabled tri-state buffer between "ARDUINO_IO[9]" and its non-tri-state driver. File: /build/Main.sv Line: 5
+Warning (13039): The following bidirectional pins have no drivers
+    Warning (13040): bidirectional pin "ARDUINO_IO[3]" has no driver File: /build/Main.sv Line: 5
+    Warning (13040): bidirectional pin "ARDUINO_IO[7]" has no driver File: /build/Main.sv Line: 5
+    Warning (13040): bidirectional pin "ARDUINO_IO[8]" has no driver File: /build/Main.sv Line: 5
+Warning (13032): The following tri-state nodes are fed by constants
+    Warning (13033): The pin "ARDUINO_IO[2]" is fed by VCC File: /build/Main.sv Line: 5
+    Warning (13033): The pin "ARDUINO_IO[6]" is fed by VCC File: /build/Main.sv Line: 5
+Warning (13009): TRI or OPNDRN buffers permanently enabled
+    Warning (13010): Node "ARDUINO_IO[0]~synth" File: /build/Main.sv Line: 5
+    Warning (13010): Node "ARDUINO_IO[1]~synth" File: /build/Main.sv Line: 5
+    Warning (13010): Node "ARDUINO_IO[2]~synth" File: /build/Main.sv Line: 5
+    Warning (13010): Node "ARDUINO_IO[4]~synth" File: /build/Main.sv Line: 5
+    Warning (13010): Node "ARDUINO_IO[5]~synth" File: /build/Main.sv Line: 5
+    Warning (13010): Node "ARDUINO_IO[6]~synth" File: /build/Main.sv Line: 5
+    Warning (13010): Node "ARDUINO_IO[9]~synth" File: /build/Main.sv Line: 5
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "PIN_O[0]" is stuck at GND File: /build/Main.sv Line: 6
+    Warning (13410): Pin "PIN_O[1]" is stuck at GND File: /build/Main.sv Line: 6
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: /build/Main.sv Line: 7
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: /build/Main.sv Line: 7
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: /build/Main.sv Line: 7
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: /build/Main.sv Line: 7
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: /build/Main.sv Line: 7
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: /build/Main.sv Line: 7
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: /build/Main.sv Line: 7
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: /build/Main.sv Line: 7
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: /build/Main.sv Line: 7
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: /build/Main.sv Line: 7
+    Warning (13410): Pin "HEX0[0]" is stuck at VCC File: /build/Main.sv Line: 9
+    Warning (13410): Pin "HEX0[1]" is stuck at VCC File: /build/Main.sv Line: 9
+    Warning (13410): Pin "HEX0[2]" is stuck at VCC File: /build/Main.sv Line: 9
+    Warning (13410): Pin "HEX0[3]" is stuck at VCC File: /build/Main.sv Line: 9
+    Warning (13410): Pin "HEX0[4]" is stuck at VCC File: /build/Main.sv Line: 9
+    Warning (13410): Pin "HEX0[5]" is stuck at VCC File: /build/Main.sv Line: 9
+    Warning (13410): Pin "HEX0[6]" is stuck at VCC File: /build/Main.sv Line: 9
+    Warning (13410): Pin "HEX0[7]" is stuck at VCC File: /build/Main.sv Line: 9
+    Warning (13410): Pin "HEX1[0]" is stuck at VCC File: /build/Main.sv Line: 10
+    Warning (13410): Pin "HEX1[1]" is stuck at VCC File: /build/Main.sv Line: 10
+    Warning (13410): Pin "HEX1[2]" is stuck at VCC File: /build/Main.sv Line: 10
+    Warning (13410): Pin "HEX1[3]" is stuck at VCC File: /build/Main.sv Line: 10
+    Warning (13410): Pin "HEX1[4]" is stuck at VCC File: /build/Main.sv Line: 10
+    Warning (13410): Pin "HEX1[5]" is stuck at VCC File: /build/Main.sv Line: 10
+    Warning (13410): Pin "HEX1[6]" is stuck at VCC File: /build/Main.sv Line: 10
+    Warning (13410): Pin "HEX1[7]" is stuck at VCC File: /build/Main.sv Line: 10
+    Warning (13410): Pin "HEX2[0]" is stuck at VCC File: /build/Main.sv Line: 11
+    Warning (13410): Pin "HEX2[1]" is stuck at VCC File: /build/Main.sv Line: 11
+    Warning (13410): Pin "HEX2[2]" is stuck at VCC File: /build/Main.sv Line: 11
+    Warning (13410): Pin "HEX2[3]" is stuck at VCC File: /build/Main.sv Line: 11
+    Warning (13410): Pin "HEX2[4]" is stuck at VCC File: /build/Main.sv Line: 11
+    Warning (13410): Pin "HEX2[5]" is stuck at VCC File: /build/Main.sv Line: 11
+    Warning (13410): Pin "HEX2[6]" is stuck at VCC File: /build/Main.sv Line: 11
+    Warning (13410): Pin "HEX2[7]" is stuck at VCC File: /build/Main.sv Line: 11
+    Warning (13410): Pin "HEX3[0]" is stuck at VCC File: /build/Main.sv Line: 12
+    Warning (13410): Pin "HEX3[1]" is stuck at VCC File: /build/Main.sv Line: 12
+    Warning (13410): Pin "HEX3[2]" is stuck at GND File: /build/Main.sv Line: 12
+    Warning (13410): Pin "HEX3[3]" is stuck at VCC File: /build/Main.sv Line: 12
+    Warning (13410): Pin "HEX3[4]" is stuck at VCC File: /build/Main.sv Line: 12
+    Warning (13410): Pin "HEX3[5]" is stuck at VCC File: /build/Main.sv Line: 12
+    Warning (13410): Pin "HEX3[6]" is stuck at VCC File: /build/Main.sv Line: 12
+    Warning (13410): Pin "HEX3[7]" is stuck at VCC File: /build/Main.sv Line: 12
+    Warning (13410): Pin "HEX4[0]" is stuck at VCC File: /build/Main.sv Line: 14
+    Warning (13410): Pin "HEX4[1]" is stuck at VCC File: /build/Main.sv Line: 14
+    Warning (13410): Pin "HEX4[2]" is stuck at VCC File: /build/Main.sv Line: 14
+    Warning (13410): Pin "HEX4[3]" is stuck at VCC File: /build/Main.sv Line: 14
+    Warning (13410): Pin "HEX4[4]" is stuck at VCC File: /build/Main.sv Line: 14
+    Warning (13410): Pin "HEX4[5]" is stuck at VCC File: /build/Main.sv Line: 14
+    Warning (13410): Pin "HEX4[6]" is stuck at VCC File: /build/Main.sv Line: 14
+    Warning (13410): Pin "HEX4[7]" is stuck at VCC File: /build/Main.sv Line: 14
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 8 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 11 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "KEY[1]" File: /build/Main.sv Line: 4
+    Warning (15610): No output dependent on input pin "SW[0]" File: /build/Main.sv Line: 8
+    Warning (15610): No output dependent on input pin "SW[1]" File: /build/Main.sv Line: 8
+    Warning (15610): No output dependent on input pin "SW[2]" File: /build/Main.sv Line: 8
+    Warning (15610): No output dependent on input pin "SW[3]" File: /build/Main.sv Line: 8
+    Warning (15610): No output dependent on input pin "SW[4]" File: /build/Main.sv Line: 8
+    Warning (15610): No output dependent on input pin "SW[5]" File: /build/Main.sv Line: 8
+    Warning (15610): No output dependent on input pin "SW[6]" File: /build/Main.sv Line: 8
+    Warning (15610): No output dependent on input pin "SW[7]" File: /build/Main.sv Line: 8
+    Warning (15610): No output dependent on input pin "SW[8]" File: /build/Main.sv Line: 8
+    Warning (15610): No output dependent on input pin "SW[9]" File: /build/Main.sv Line: 8
+Info (21057): Implemented 6648 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 13 input pins
+    Info (21059): Implemented 52 output pins
+    Info (21060): Implemented 10 bidirectional pins
+    Info (21061): Implemented 6567 logic cells
+    Info (21062): Implemented 6 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 112 warnings
+    Info: Peak virtual memory: 847 megabytes
+    Info: Processing ended: Mon May 25 16:13:01 2026
+    Info: Elapsed time: 00:00:18
+    Info: Total CPU time (on all processors): 00:00:28
 
 

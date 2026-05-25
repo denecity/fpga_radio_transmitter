@@ -1,0 +1,28 @@
+
+State Machine - |Main|FirFSM:fir_r|state
+Name state.IDLE state.FINISH state.ITERATE 
+state.IDLE 0 0 0 
+state.ITERATE 1 0 1 
+state.FINISH 1 1 0 
+
+State Machine - |Main|FirFSM:fir_l|state
+Name state.IDLE state.FINISH state.ITERATE 
+state.IDLE 0 0 0 
+state.ITERATE 1 0 1 
+state.FINISH 1 1 0 
+
+State Machine - |Main|AdcReader:adc_r|state_q
+Name state_q.CLK_LOW state_q.CLK_SET state_q.CNV_DOWN state_q.IDLE state_q.DONE 
+state_q.IDLE 0 0 0 0 0 
+state_q.CNV_DOWN 0 0 1 1 0 
+state_q.CLK_SET 0 1 0 1 0 
+state_q.CLK_LOW 1 0 0 1 0 
+state_q.DONE 0 0 0 1 1 
+
+State Machine - |Main|AdcReader:adc_l|state_q
+Name state_q.CLK_LOW state_q.CLK_SET state_q.CNV_DOWN state_q.IDLE state_q.DONE 
+state_q.IDLE 0 0 0 0 0 
+state_q.CNV_DOWN 0 0 1 1 0 
+state_q.CLK_SET 0 1 0 1 0 
+state_q.CLK_LOW 1 0 0 1 0 
+state_q.DONE 0 0 0 1 1 
