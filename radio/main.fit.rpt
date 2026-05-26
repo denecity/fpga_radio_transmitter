@@ -1,5 +1,5 @@
 Fitter report for main
-Mon May 25 16:14:49 2026
+Tue May 26 08:11:33 2026
 Quartus Prime Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
 
 
@@ -67,7 +67,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                   ;
 +---------------------------------+------------------------------------------------+
-; Fitter Status                   ; Successful - Mon May 25 16:14:49 2026          ;
+; Fitter Status                   ; Successful - Tue May 26 08:11:33 2026          ;
 ; Quartus Prime Version           ; 22.1std.2 Build 922 07/20/2023 SC Lite Edition ;
 ; Revision Name                   ; main                                           ;
 ; Top-level Entity Name           ; Main                                           ;
@@ -161,12 +161,12 @@ https://fpgasoftware.intel.com/eula.
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
 ;     Processor 2            ;   4.2%      ;
-;     Processor 3            ;   4.0%      ;
-;     Processor 4            ;   3.8%      ;
+;     Processor 3            ;   3.9%      ;
+;     Processor 4            ;   3.7%      ;
 ;     Processor 5            ;   3.7%      ;
 ;     Processor 6            ;   3.6%      ;
 ;     Processor 7            ;   3.6%      ;
-;     Processor 8            ;   3.6%      ;
+;     Processor 8            ;   3.5%      ;
 +----------------------------+-------------+
 
 
@@ -6360,7 +6360,7 @@ Info (332130): Timing requirements not specified -- quality metrics such as perf
 Info (176235): Finished register packing
     Extra Info (176218): Packed 64 registers into blocks of type DSP block
     Extra Info (176220): Created 16 register duplicates
-Info (11798): Fitter preparation operations ending: elapsed time is 00:00:09
+Info (11798): Fitter preparation operations ending: elapsed time is 00:00:10
 Info (170189): Fitter placement preparation operations beginning
 Info (14951): The Fitter is using Advanced Physical Optimization.
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:25
@@ -6373,12 +6373,12 @@ Info (170195): Router estimated average interconnect usage is 0% of the availabl
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:10
-Info (11888): Total time spent on timing analysis during the Fitter is 5.53 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 5.50 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:12
+Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:11
 Warning (169064): Following 10 pins have no output enable or a GND or VCC output enable - later changes to this connectivity may change fitting results
     Info (169065): Pin ARDUINO_IO[8] has a permanently disabled output enable File: /build/Main.sv Line: 5
     Info (169065): Pin ARDUINO_IO[0] has a permanently enabled output enable File: /build/Main.sv Line: 5
@@ -6392,10 +6392,10 @@ Warning (169064): Following 10 pins have no output enable or a GND or VCC output
     Info (169065): Pin ARDUINO_IO[9] has a permanently enabled output enable File: /build/Main.sv Line: 5
 Info (144001): Generated suppressed messages file /build/main.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 2715 megabytes
-    Info: Processing ended: Mon May 25 16:14:50 2026
+    Info: Peak virtual memory: 2717 megabytes
+    Info: Processing ended: Tue May 26 08:11:34 2026
     Info: Elapsed time: 00:01:48
-    Info: Total CPU time (on all processors): 00:03:46
+    Info: Total CPU time (on all processors): 00:03:47
 
 
 +----------------------------+

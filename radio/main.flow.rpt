@@ -1,5 +1,5 @@
 Flow report for main
-Mon May 25 16:15:13 2026
+Tue May 26 08:11:57 2026
 Quartus Prime Version 22.1std.2 Build 922 07/20/2023 SC Lite Edition
 
 
@@ -41,7 +41,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +---------------------------------+------------------------------------------------+
-; Flow Status                     ; Successful - Mon May 25 16:15:00 2026          ;
+; Flow Status                     ; Successful - Tue May 26 08:11:44 2026          ;
 ; Quartus Prime Version           ; 22.1std.2 Build 922 07/20/2023 SC Lite Edition ;
 ; Revision Name                   ; main                                           ;
 ; Top-level Entity Name           ; Main                                           ;
@@ -68,7 +68,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/25/2026 16:12:44 ;
+; Start date & time ; 05/26/2026 08:09:28 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; main                ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ https://fpgasoftware.intel.com/eula.
 +-----------------------+---------------------------------+---------------+-------------+------------+
 ; Assignment Name       ; Value                           ; Default Value ; Entity Name ; Section Id ;
 +-----------------------+---------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID ; 271279955243641.177972556400023 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID ; 217762081276044.177978296700023 ; --            ; --          ; --         ;
 +-----------------------+---------------------------------+---------------+-------------+------------+
 
 
@@ -88,11 +88,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:17     ; 1.0                     ; 847 MB              ; 00:00:27                           ;
-; Fitter               ; 00:01:47     ; 1.3                     ; 2715 MB             ; 00:03:44                           ;
-; Assembler            ; 00:00:08     ; 1.0                     ; 1411 MB             ; 00:00:08                           ;
-; Timing Analyzer      ; 00:00:10     ; 3.1                     ; 1432 MB             ; 00:00:25                           ;
-; Total                ; 00:02:22     ; --                      ; --                  ; 00:04:44                           ;
+; Analysis & Synthesis ; 00:00:17     ; 1.0                     ; 859 MB              ; 00:00:27                           ;
+; Fitter               ; 00:01:47     ; 1.3                     ; 2717 MB             ; 00:03:45                           ;
+; Assembler            ; 00:00:07     ; 1.0                     ; 1411 MB             ; 00:00:08                           ;
+; Timing Analyzer      ; 00:00:11     ; 3.1                     ; 1432 MB             ; 00:00:25                           ;
+; Total                ; 00:02:22     ; --                      ; --                  ; 00:04:45                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -101,10 +101,10 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+------------------+------------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name          ; OS Version ; Processor type ;
 +----------------------+------------------+------------------+------------+----------------+
-; Analysis & Synthesis ; 66413f0147ca     ; Debian GNU/Linux ; 9          ; x86_64         ;
-; Fitter               ; 66413f0147ca     ; Debian GNU/Linux ; 9          ; x86_64         ;
-; Assembler            ; 66413f0147ca     ; Debian GNU/Linux ; 9          ; x86_64         ;
-; Timing Analyzer      ; 66413f0147ca     ; Debian GNU/Linux ; 9          ; x86_64         ;
+; Analysis & Synthesis ; 9a99d00a3358     ; Debian GNU/Linux ; 9          ; x86_64         ;
+; Fitter               ; 9a99d00a3358     ; Debian GNU/Linux ; 9          ; x86_64         ;
+; Assembler            ; 9a99d00a3358     ; Debian GNU/Linux ; 9          ; x86_64         ;
+; Timing Analyzer      ; 9a99d00a3358     ; Debian GNU/Linux ; 9          ; x86_64         ;
 +----------------------+------------------+------------------+------------+----------------+
 
 
