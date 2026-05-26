@@ -15,13 +15,13 @@ module Main(
 
     // Signal chain (per lane, l = left, r = right):
     //   l_adc / r_adc   -- 1 MHz samples from the two ADCs
-    //   l_cic / r_cic   -- 100 kHz after the CIC decimators
-    //   l_fir / r_fir   -- 100 kHz after the FIR CIC-compensation filters
-    //   mpx             -- 100 kHz stereo composite (L+R, pilot, (L-R)*subcarrier)
+    //   l_cic / r_cic   -- 125 kHz after the CIC decimators
+    //   l_fir / r_fir   -- 125 kHz after the FIR CIC-compensation filters
+    //   mpx             -- 125 kHz stereo composite (L+R, pilot, (L-R)*subcarrier)
     //   fm_square       -- digital FM square wave out to the antenna pin
     //
     // The ADCs run at 1 MHz (the rate their analog anti-aliasing filters were
-    // designed for); the CICs decimate by 10 down to 100 kHz; the FIRs
+    // designed for); the CICs decimate by 10 down to 125 kHz; the FIRs
     // compensate the CIC droop and apply any extra audio shaping.
 
     // --- Clock / reset
@@ -39,8 +39,8 @@ module Main(
 
     // --- Audio chain signals
     logic signed [15:0] l_adc, r_adc;   // ADC outputs (1 MHz)
-    logic signed [15:0] l_cic, r_cic;   // CIC outputs (100 kHz)
-    logic signed [15:0] l_fir, r_fir;   // FIR outputs (100 kHz)
+    logic signed [15:0] l_cic, r_cic;   // CIC outputs (125 kHz)
+    logic signed [15:0] l_fir, r_fir;   // FIR outputs (125 kHz)
 
     // --- Modulation signals
     logic signed [15:0] pilot_19k;      // 19 kHz pilot tone
@@ -93,7 +93,7 @@ module Main(
         .is_idle_o ()
     );
 
-    // --- CIC decimators: 1 MHz -> 100 kHz
+    // --- CIC decimators: 1 MHz -> 125 kHz
     CicDecimator cic_l ( 
         .clk_i         (clk),
         .reset_i       (reset),
@@ -137,7 +137,7 @@ module Main(
 
     // --- Pilot (19 kHz) + subcarrier (38 kHz) generator
     FullSinePackage #(
-        .SAMPLE_FREQ(100_000),
+        .SAMPLE_FREQ(125_000),
         .OUT_FREQ   (19_000)
     ) sineGen (
         .clk_i       (clk),
