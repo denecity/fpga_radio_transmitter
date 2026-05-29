@@ -1,7 +1,7 @@
 v1
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,FullSinePackage:sineGen|lpm_mult:Mult0|mult_pgs:auto_generated|mac_out2,
 DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,StereoEncoder:stereoEncoder|lpm_mult:Mult1|mult_rgs:auto_generated|mac_out2,
 DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,FirFSM:fir_l|MultiphyAddSaturated:multAdd|lpm_mult:Mult0|mult_ngs:auto_generated|mac_out2,
 DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,FirFSM:fir_r|MultiphyAddSaturated:multAdd|lpm_mult:Mult0|mult_ngs:auto_generated|mac_out2,
-DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,FullSinePackage:sineGen|lpm_mult:Mult0|mult_pgs:auto_generated|mac_out2,
 PORT_SWAPPING,PORT_SWAP_TYPE_DSPMULT,FirFSM:fir_l|MultiphyAddSaturated:multAdd|lpm_mult:Mult0|mult_ngs:auto_generated|mac_mult1,
 PORT_SWAPPING,PORT_SWAP_TYPE_DSPMULT,FirFSM:fir_r|MultiphyAddSaturated:multAdd|lpm_mult:Mult0|mult_ngs:auto_generated|mac_mult1,

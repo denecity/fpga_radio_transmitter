@@ -6,7 +6,7 @@
 module DDS #(
     parameter int N_bits     =  32,
     parameter logic [N_bits-1:0] CARRIER_INC = 0,
-    parameter int MOD_SHIFT = 6
+    parameter int MOD_SHIFT = 6,
     parameter logic signed [N_bits-1:0] threshold = 1 << (N_bits-1) // 2^31 is half of max positive int
 )(
     input logic                 clk_i,
@@ -35,10 +35,11 @@ endmodule
 /*
     Decimator with integrated tick_i generator for the reduced sampling rate
 */
+
 module DDS #(
     parameter N_bits     =  32, // the number of bits before overflow
-    parameter logic signed [N_bits-1:0] TUNING_WORD = 1717986918, // round(F_carrier * 2^N_bits / SAMPLE_FREQ)
-    parameter logic signed [N_bits-1:0] SIGNAL_MULTIPLIER = 75, // we have a signal_i with +.- 32768, the correct modulation is 1/1333 signed, which means TUNING_WORD / 1333 = 1288072, 1288072 / 32768 = 39, which is the value we need to multiply the input signal by to get the correct modulation index (frequency deviation) for the FM signal.
+    parameter logic signed [N_bits-1:0] TUNING_WORD = 1_517_986_918,//1_717_986_918, // round(F_carrier * 2^N_bits / SAMPLE_FREQ)
+    parameter logic signed [N_bits-1:0] SIGNAL_MULTIPLIER = 80, // we have a signal_i with +- 32768, the correct modulation is 1/1333 signed, which means TUNING_WORD / 1333 = 1288072, 1288072 / 32768 = 39, which is the value we need to multiply the input signal by to get the correct modulation index (frequency deviation) for the FM signal.
     parameter logic signed [16-1:0] threshold = 1 << (N_bits-1) 
 )(
     input logic         clk_i,

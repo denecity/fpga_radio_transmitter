@@ -167,16 +167,31 @@ module Main(
         .square_o(fm_square)
     );
 
-    // --- HEX displays (active-low 7-seg)
-    // TODO: spell "RADIO" once we agree on the segment patterns.
+
+
+// --- DEBUG peak meter: SWn up selects pipeline stage n ---
+    logic signed [15:0] probe_sig;
+    logic        [3:0]  probe_id;
     always_comb begin
-        HEX0 = 8'hFF;
-        HEX1 = 8'hFF;
-        HEX2 = 8'hFF;
-        HEX3 = ~8'd4;   // 'I' placeholder
-        HEX4 = 8'hFF;
+        if      (SW[0]) begin probe_sig = l_adc;          probe_id = 4'd0; end
+        else if (SW[1]) begin probe_sig = r_adc;          probe_id = 4'd1; end
+        else if (SW[2]) begin probe_sig = l_cic;          probe_id = 4'd2; end
+        else if (SW[3]) begin probe_sig = r_cic;          probe_id = 4'd3; end
+        else if (SW[4]) begin probe_sig = l_fir;          probe_id = 4'd4; end
+        else if (SW[5]) begin probe_sig = r_fir;          probe_id = 4'd5; end
+        else if (SW[6]) begin probe_sig = pilot_19k;      probe_id = 4'd6; end
+        else if (SW[7]) begin probe_sig = subcarrier_38k; probe_id = 4'd7; end
+        else if (SW[8]) begin probe_sig = mpx;            probe_id = 4'd8; end
+        else            begin probe_sig = l_adc;          probe_id = 4'hF; end
     end
 
+    PeakMeter peakMeter (
+        .clk_i   (clk),
+        .reset_i (reset),
+        .signal_i(probe_sig),
+        .stage_i (probe_id),
+        .HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4)
+    );
     // --- Arduino header pin map
     // TODO: confirm against the board pin-out spreadsheet.
     assign ARDUINO_IO[0] = adc_cnv_r;

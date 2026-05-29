@@ -68,7 +68,7 @@ module StereoEncoder (
 
     always_ff @(posedge clk_i) begin
         if (reset_i)      mpx_o <= '0;
-        else if (tick_i)  mpx_o <= 16'(mpx_full >>> 3); //   >>> 3 leaves enough headroom that no input combination can overflow 16-bit signed.
+        else if (tick_i)  mpx_o <= 16'(mpx_full >>> 2); //   >>> 3 leaves enough headroom that no input combination can overflow 16-bit signed.
                                                          // might need to be amplified on the FM modulator side
     end
 

@@ -1,4 +1,4 @@
-VERILOG_SOURCES = $(PWD)/AdcReader.sv $(PWD)/CIC.sv $(PWD)/Cordic.sv $(PWD)/FirFSM.sv $(PWD)/TickGen.sv $(PWD)/DDS.sv $(PWD)/FullSinePackage.sv $(PWD)/StereoEncoder.sv
+VERILOG_SOURCES = $(PWD)/AdcReader.sv $(PWD)/CIC.sv $(PWD)/Cordic.sv $(PWD)/FirFSM.sv $(PWD)/TickGen.sv $(PWD)/DDS.sv $(PWD)/FullSinePackage.sv $(PWD)/StereoEncoder.sv $(PWD)/PeakMeter.sv
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file:
 TOPLEVEL=Main
 # MODULE is the name of the Python test file:
